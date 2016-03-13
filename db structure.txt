@@ -1,0 +1,40 @@
+CREATE TABLE board
+(
+    no INT(7) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    title TINYTEXT NOT NULL,
+    content TEXT,
+    usrname VARCHAR(12) NOT NULL,
+    hit INT(5) DEFAULT '0' NOT NULL,
+    created DATETIME NOT NULL,
+    modtime DATETIME
+);
+CREATE TABLE gallery
+(
+    no INT(7) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    title TINYTEXT NOT NULL,
+    content TEXT,
+    usrname VARCHAR(12) NOT NULL,
+    hit INT(5) DEFAULT '0' NOT NULL,
+    created DATETIME NOT NULL,
+    modtime DATETIME
+);
+CREATE TABLE member
+(
+    no INT(7) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    usrname VARCHAR(20) NOT NULL,
+    pwd VARCHAR(20) NOT NULL,
+    email TINYTEXT NOT NULL,
+    memo TEXT,
+    created DATETIME NOT NULL
+);
+CREATE TABLE work
+(
+    no INT(7) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    title TINYTEXT NOT NULL,
+    content TEXT,
+    usrname VARCHAR(12) NOT NULL,
+    hit INT(5) DEFAULT '0' NOT NULL,
+    created DATETIME NOT NULL,
+    modtime DATETIME
+);

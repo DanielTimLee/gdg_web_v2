@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="content-type" content="text/html" ; charset="UTF-8"/>
+    <title>Hello AJAX</title>
+    <script type="text/javascript">
+        function getXHR() {
+            var req;
+            try {
+                req = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    req = new ActiveXObject('MSXML2.XMLHTTP');
+                } catch (e) {
+                    req = new ActiveXObject('Microsoft.XMLHTTP');
+                }
+            }
+            return req;
+        }
+
+        function asyncSend() {
+            var req = getXHR();
+            req.onreadystatechange = function () {
+                var result = document.getElementById('result');
+                if (req.readyState == 4) {
+                    if (req.status == 200) {
+                        result.innerHTML = req.responseText;
+                    } else {
+                        result.innerHTML = "server error"
+                    }
+                } else {
+                    result.InnerHTML = "Loading.."
+                }
+
+            };
+            req.open('POST', 'helloAjax.php?pages=work', 'true');
+            req.setRequestHeader('content-type',
+                    'application/x-www-form-urlencoded; charset=UTF-8');
+            req.send('name=' + encodeURIComponent(document.fm.name.value));
+        }
+    </script>
 </head>
 <body>
-
+<form name="fm">
+    <label>Name :
+        <input type="text" name="name" size="15"/></label>
+    <input type="button" name="submit" value="send" onclick="asyncSend()"/>
+</form>
+<div id="result"></div>
 </body>
 </html>
